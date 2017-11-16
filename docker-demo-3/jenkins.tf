@@ -17,7 +17,7 @@ resource "aws_instance" "jenkins-instance" {
 }
 
 resource "aws_ebs_volume" "jenkins-data" {
-    availability_zone = "eu-west-1a"
+    availability_zone = "eu-central-1a"
     size = 20
     type = "gp2" 
     tags {
@@ -30,4 +30,3 @@ resource "aws_volume_attachment" "jenkins-data-attachment" {
   volume_id = "${aws_ebs_volume.jenkins-data.id}"
   instance_id = "${aws_instance.jenkins-instance.id}"
 }
-
