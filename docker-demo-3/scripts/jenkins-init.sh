@@ -1,20 +1,12 @@
 #!/bin/bash
 
+sleep 300
+
 # volume setup
 vgchange -ay
 
 DEVICE_FS=`blkid -o value -s TYPE ${DEVICE}`
 if [ "`echo -n $DEVICE_FS`" == "" ] ; then 
-  # wait for the device to be attached
-  DEVICENAME=`echo "${DEVICE}" | awk -F '/' '{print $3}'`
-  DEVICEEXISTS=''
-  while [[ -z $DEVICEEXISTS ]]; do
-    echo "checking $DEVICENAME"
-    DEVICEEXISTS=`ls -asl /dev/disk/by-uuid/ | grep "$DEVICENAME"`
-    if [[ -z $DEVICEEXISTS ]]; then
-      sleep 15
-    fi
-  done
 	pvcreate ${DEVICE}
 	vgcreate data ${DEVICE}
 	lvcreate --name volume1 -l 100%FREE data
@@ -46,8 +38,11 @@ pip install awscli
 
 # install terraform
 cd /usr/local/bin
-wget -q https://releases.hashicorp.com/terraform/0.7.7/terraform_0.7.7_linux_amd64.zip
-unzip terraform_0.7.7_linux_amd64.zip
+#wget -q https://releases.hashicorp.com/terraform/0.7.7/terraform_0.7.7_linux_amd64.zip
+wget -q https://releases.hashicorp.com/terraform/0.9.7/terraform_0.9.7_linux_amd64.zip
+#unzip terraform_0.7.7_linux_amd64.zip
+unzip terraform_0.9.7_linux_amd64.zip
 # clean up
 apt-get clean
-rm terraform_0.7.7_linux_amd64.zip
+#rm terraform_0.7.7_linux_amd64.zip
+rm terraform_0.9.7_linux_amd64.zip
