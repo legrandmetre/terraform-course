@@ -7,6 +7,10 @@ provider "aws" {
   You can provide your credentials via the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY, environment variables
   $ export AWS_ACCESS_KEY_ID="anaccesskey"
   $ export AWS_SECRET_ACCESS_KEY="asecretkey"
+  
+  Do not forget to unset environment variables
+  $ unset AWS_ACCESS_KEY_ID
+  $ unset AWS_SECRET_ACCESS_KEY
   */
 
   region = "eu-central-1"
