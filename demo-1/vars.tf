@@ -1,3 +1,8 @@
+/*
+Variables will be asked at APPLY phase or should be mentioned in terraform.tfvars file
+*/
+variable "AWS_ACCESS_KEY" {}
+variable "AWS_SECRET_KEY" {}
 variable "AWS_REGION" {
   #default = "eu-central-1"
 }
