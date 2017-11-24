@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# sleep until instance is ready
+sleep 180
+
 vgchange -ay
 
 DEVICE_FS=`blkid -o value -s TYPE ${DEVICE}`
